@@ -1,22 +1,49 @@
 #include <stdio.h>
 #include <string.h>
 
+float vat;
+int m;
+
 struct Food{
 	char dish[50];
 	int price;
 };
 	
 int main(){
-	int menu;
+	struct Food d[5] = {
+		{"Pepsi", 20 },
+		{"Fanta", 20 },
+		{"Singcha", 65 },
+		{"Heineken", 75 },
+		{"White Wine", 350 }
+	};	
+	
 	printf("-----------------Food menu-----------------\n");
-	printf("1. Pepsi \t 20 bath \n");
- 	printf("2. Fanta \t 15 bath \n");
- 	printf("3. Singcha \t 65 bath \n");
-	printf("4. Heineken \t 75 bath \n");
-	printf("5. White Wine \t 350 bath \n");
+for (int i = 0; i < 5; i++) {
+    printf("%d. %s \t %d bath\n", i + 1, d[i].dish, d[i].price);
+	}
 	printf("--------------------------------------------\n");
-	for (int i = 0; i < 50; i++){
-		printf("Please Select Menu %d:", i + 1);
-		scanf("%s",d[i].dish);
-	}return 0;
+	int menu;
+	printf("Please Select Menu (1-5) : ");
+	scanf("%d", &menu);
+	printf("How many you want to buy : ");
+	scanf("%d", &m);
+
+	if(menu < 1 || menu > 5){
+		printf("Invlid Number ! Please enter the number between 1 and 5.\n");
+		return 1;
+	}
+	if (m <= 0) {
+    	printf("Invalid quantity! Please enter a positive number.\n");
+    	return 1;
+	}
+	
+	printf("The menu you choose : %s %d bath\n\n", d[menu-1].dish ,d[menu-1].price);
+	
+	float subtotal = d[menu-1].price * m;
+	vat = subtotal * 0.07;
+	float final_price = subtotal + vat;
+	printf("Total price including VAT (7%%): %.2f bath\n", final_price);
+
+	return 0;
 }
