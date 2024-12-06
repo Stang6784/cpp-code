@@ -30,7 +30,7 @@ for (int i = 0; i < 5; i++) {
 	scanf("%d", &m);
 
 	if(menu < 1 || menu > 5){
-		printf("Invlid Number ! Please enter the number between 1 and 5.\n");
+		printf("Invalid Number ! Please enter the number between 1 and 5.\n");
 		return 1;
 	}
 	if (m <= 0) {
@@ -44,6 +44,14 @@ for (int i = 0; i < 5; i++) {
 	vat = subtotal * 0.07;
 	float final_price = subtotal + vat;
 	printf("Total price including VAT (7%%): %.2f bath\n", final_price);
+	
+	FILE *fptr = fopen("Food.txt","w");
+	fprintf(fptr, "The menu you choose : %s\n", d[menu-1].dish);
+	fprintf(fptr, "Quantity : %d\n", d[menu-1].price);
+	fprintf(fptr, "Total price including VAT (7%%): %.2f bath\n", final_price);
+	fclose(fptr);
+	
+	printf("Data have been saved!");
 
 	return 0;
 }

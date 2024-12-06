@@ -1,0 +1,3 @@
+The menu you choose : Heineken
+Quantity : 75
+Total price including VAT (7%): 401.25 bath
